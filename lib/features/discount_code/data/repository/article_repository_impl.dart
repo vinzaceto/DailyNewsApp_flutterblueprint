@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutterblueprint/core/constants/constants.dart';
-import 'package:flutterblueprint/core/resources/data_state.dart';
-import 'package:flutterblueprint/features/daily_news/data/data_sources/remote/news_api_service.dart';
-import 'package:flutterblueprint/features/daily_news/domain/entities/article.dart';
-import 'package:flutterblueprint/features/daily_news/domain/repository/article_repository.dart';
+import 'package:discountcodes/core/constants/constants.dart';
+import 'package:discountcodes/core/resources/data_state.dart';
+import 'package:discountcodes/features/discount_code/data/data_sources/remote/news_api_service.dart';
+import 'package:discountcodes/features/discount_code/domain/entities/article.dart';
+import 'package:discountcodes/features/discount_code/domain/repository/article_repository.dart';
 
 import '../data_sources/remote/news_api_service.dart';
 import '../models/article.dart';

@@ -1,4 +1,4 @@
-package com.example.flutterblueprint
+package com.example.discountcodes
 
 import io.flutter.embedding.android.FlutterActivity
 

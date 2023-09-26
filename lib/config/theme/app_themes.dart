@@ -10,10 +10,20 @@ ThemeData theme() {
 
 AppBarTheme appBarTheme() {
   return const AppBarTheme(
-    color: Colors.white,
+    color: Colors.red,
     elevation: 0,
-    centerTitle: true,
-    iconTheme: IconThemeData(color: Color(0XFF8B8B8B)),
-    titleTextStyle: TextStyle(color: Color(0XFF8B8B8B), fontSize: 18),
+    centerTitle: false,
+    iconTheme: IconThemeData(color: Colors.white),
+    titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
+  );
+}
+
+SearchBarThemeData searchBarTheme() {
+  return SearchBarThemeData(
+    backgroundColor: MaterialStateProperty.all(Colors.white),
+    shadowColor: MaterialStateProperty.all(Colors.redAccent),
+    //overlayColor: MaterialStateProperty.all(Colors.redAccent),
+    hintStyle: MaterialStateProperty.all(const TextStyle(color: Colors.grey)),
+    side: MaterialStateProperty.all(const BorderSide(color: Colors.redAccent)),
   );
 }

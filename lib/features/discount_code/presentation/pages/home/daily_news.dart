@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterblueprint/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
-import 'package:flutterblueprint/features/daily_news/presentation/bloc/article/remote/remote_article_state.dart';
+import 'package:discountcodes/features/discount_code/presentation/bloc/article/remote/remote_article_bloc.dart';
+import 'package:discountcodes/features/discount_code/presentation/bloc/article/remote/remote_article_state.dart';
 
 import '../../../domain/entities/article.dart';
 import '../../widgets/article_title.dart';

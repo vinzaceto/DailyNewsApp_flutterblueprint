@@ -1,0 +1,16 @@
+{
+    "helloWorld": "Ciao Mondo!",
+    "appName":"Code Discount",
+    "settings" : "Impostazioni",
+    "@settings": {
+        "description": "Il nome della sezione Impostazioni"
+    },
+    "details" : "Dettagli",
+    "@details": {
+        "description": "The name of details section"
+    },
+    "searchYourCoupons" : "Cerca i tuoi coupon...",
+    "@searchYourCoupons": {
+        "description": "hint for searchbar"
+    }
+}

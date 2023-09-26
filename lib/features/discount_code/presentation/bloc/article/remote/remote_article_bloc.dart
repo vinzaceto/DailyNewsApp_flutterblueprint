@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterblueprint/features/daily_news/presentation/bloc/article/remote/remote_article_event.dart';
+import 'package:discountcodes/features/discount_code/presentation/bloc/article/remote/remote_article_event.dart';
 
 import '../../../../../../core/resources/data_state.dart';
 import '../../../../domain/usecases/get_article.dart';

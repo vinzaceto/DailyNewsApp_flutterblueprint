@@ -1,6 +1,6 @@
-import 'package:flutterblueprint/core/resources/data_state.dart';
-import 'package:flutterblueprint/core/usecases/usecase.dart';
-import 'package:flutterblueprint/features/daily_news/domain/entities/article.dart';
+import 'package:discountcodes/core/resources/data_state.dart';
+import 'package:discountcodes/core/usecases/usecase.dart';
+import 'package:discountcodes/features/discount_code/domain/entities/article.dart';
 
 import '../repository/article_repository.dart';
 
