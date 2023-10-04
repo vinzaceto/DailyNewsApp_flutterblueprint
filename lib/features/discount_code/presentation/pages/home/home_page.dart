@@ -32,14 +32,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: _buildAppbar(context),
       body: _buildBody(context),
-      floatingActionButton: _buildFloatingButton(context),
-    );
-  }
-
-  _buildFloatingButton(BuildContext context) {
-    return FloatingActionButton(
-      child: const Icon(Icons.add),
-      onPressed: () => _onFloatingButtonTap(context),
     );
   }
 
@@ -66,12 +58,12 @@ class _HomePageState extends State<HomePage> {
   _buildBody(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-          mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-          children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         _buildHeader(context),
         _buildHeightSection(context),
-        _buildWeightAgeSection(context)
+        _buildWeightAgeSection(context),
+        _buildCalculateButton(context)
       ]),
     );
   }
@@ -169,12 +161,13 @@ class _HomePageState extends State<HomePage> {
               color: Colors.grey[300],
               borderRadius: BorderRadius.all(Radius.circular(5))),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: IncrementalComponent(
-              title: AppLocalizations.of(context)?.weight,
-              unit: "Kg",
-            )
-          ),
+              padding: const EdgeInsets.all(16.0),
+              child: IncrementalComponent(
+                title: AppLocalizations.of(context)?.weight,
+                unit: "Kg",
+                onPlusTapped: _onPlusTapped,
+                onMinusTapped: _onPlusTapped,
+              )),
         ),
         SizedBox(width: 16),
         Container(
@@ -188,8 +181,9 @@ class _HomePageState extends State<HomePage> {
               child: IncrementalComponent(
                 title: AppLocalizations.of(context)?.age,
                 unit: "Kg",
-              )
-          ),
+                onPlusTapped: _onPlusTapped,
+                onMinusTapped: _onPlusTapped,
+              )),
         ),
       ],
     );
@@ -222,18 +216,26 @@ class _HomePageState extends State<HomePage> {
                         child: InkWell(
                           splashColor: Colors.white, // Splash color
                           onTap: () {},
-                          child: SizedBox(width: 40, height: 40, child: Center(child: Text("CM"))),
+                          child: SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: Center(child: Text("CM"))),
                         ),
                       ),
                     ),
-                    SizedBox(width: 8,),
+                    SizedBox(
+                      width: 8,
+                    ),
                     ClipOval(
                       child: Material(
                         color: Colors.grey, // Button color
                         child: InkWell(
                           splashColor: Colors.white, // Splash color
                           onTap: () {},
-                          child: SizedBox(width: 40, height: 40, child: Center(child: Text("FT"))),
+                          child: SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: Center(child: Text("FT"))),
                         ),
                       ),
                     )
@@ -266,5 +268,21 @@ class _HomePageState extends State<HomePage> {
 
   _onPlusTapped() {
     print("***** plus tapped *********");
+  }
+
+  _buildCalculateButton(BuildContext context) {
+    return Container(
+        width: (MediaQuery.of(context).size.width - 32),
+        decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.all(Radius.circular(5))),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+              child: Text(
+            "Calculate",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          )),
+        ));
   }
 }

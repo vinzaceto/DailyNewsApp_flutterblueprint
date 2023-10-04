@@ -21,11 +21,11 @@
     "@yourWeight": {
         "description": "hint for searchbar"
     },
-    "weight": "Altezza",
+    "weight": "Peso",
     "@weight": {
         "description": ""
     },
-    "height": "Peso",
+    "height": "Altezza",
     "@height": {
         "description": "height"
     },
