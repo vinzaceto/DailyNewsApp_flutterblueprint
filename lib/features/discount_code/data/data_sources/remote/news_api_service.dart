@@ -1,4 +1,4 @@
-import 'package:discountcodes/core/constants/constants.dart';
+import 'package:bmi/core/constants/constants.dart';
 import 'package:retrofit/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';

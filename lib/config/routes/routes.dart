@@ -1,6 +1,6 @@
-import 'package:discountcodes/features/discount_code/domain/entities/coupon.dart';
-import 'package:discountcodes/features/discount_code/presentation/pages/details/details_page.dart';
-import 'package:discountcodes/features/discount_code/presentation/pages/home/home_page.dart';
+import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
+import 'package:bmi/features/discount_code/presentation/pages/details/details_page.dart';
+import 'package:bmi/features/discount_code/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/discount_code/presentation/pages/settings/settings_page.dart';

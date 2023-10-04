@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:discountcodes/features/discount_code/domain/entities/coupon.dart';
+import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

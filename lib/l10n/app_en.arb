@@ -1,5 +1,5 @@
 {
-  "appname": "Code Discount",
+  "appname": "Bmi",
   "@appname": {
     "description": "The name of the app"
   },
@@ -11,13 +11,33 @@
   "@details": {
     "description": "The name of details section"
   },
-  "searchYourCoupons" : "Search your coupon",
-  "@searchYourCoupons": {
+  "yourHeight" : "Your height in cm",
+  "@yourHeight": {
     "description": "hint for searchbar"
   },
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
+  "yourWeight": "Your weight in kg",
+  "@yourWeight": {
+    "description": "hint for searchbar"
+  },
+  "weight": "Weight",
+  "@weight": {
+    "description": "weight"
+  },
+  "height": "Height",
+  "@height": {
+    "description": "height"
+  },
+  "male": "MALE",
+  "@male": {
+    "description": "male"
+  },
+  "female": "FEMALE",
+  "@female": {
+    "description": "female"
+  },
+  "age": "Age",
+  "@age": {
+    "description": "age"
   },
   "hello": "Hello {userName}",
   "@hello": {

@@ -1,4 +1,7 @@
-import 'package:discountcodes/features/discount_code/presentation/pages/home/home_page.dart';
+import 'package:bmi/features/discount_code/presentation/pages/home/home_page.dart';
+import 'package:bmi/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,6 +20,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   await initializeDependencies();
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
   runApp(const MyApp());
 }
 
@@ -30,9 +41,10 @@ class MyApp extends StatelessWidget {
       create: (context) => sl()..add(const GetArticles()),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: theme().copyWith(
+        theme: lightTheme().copyWith(
           searchBarTheme: searchBarTheme()
         ),
+        darkTheme: darkTheme(),
         home: const HomePage(),
         onGenerateRoute: AppRoutes.onGenerateRoutes,
         localizationsDelegates: [

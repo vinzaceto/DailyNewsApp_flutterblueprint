@@ -1,6 +1,9 @@
-import 'package:discountcodes/config/routes/routes.dart';
-import 'package:discountcodes/features/discount_code/domain/entities/coupon.dart';
-import 'package:discountcodes/features/discount_code/presentation/widgets/coupon_title.dart';
+import 'package:bmi/config/routes/routes.dart';
+import 'package:bmi/features/discount_code/domain/entities/BMIStatus.dart';
+import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
+import 'package:bmi/features/discount_code/presentation/widgets/coupon_title.dart';
+import 'package:bmi/features/discount_code/presentation/widgets/incremental_component.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // #docregion AppLocalizationsImport
@@ -12,161 +15,20 @@ import '../../../domain/entities/article.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-
-  static const allItems = [
-    CouponEntity(
-        name: "test 1",
-        description: "sadf asdf asdfasdfas dfasgasd ffasdfasdf "),
-    CouponEntity(
-        name: "test 2",
-        description: "Sconto del 30% sulla componente energia per 12 mesi",
-        category: "TECH"),
-    CouponEntity(
-        name: "test 3",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 4",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 5",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 6",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 7",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 8",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 9",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 10",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 11",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 12",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 13",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 14",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 15",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 16",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 17",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 18",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 19",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 20",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 21",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 22",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 23",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 24",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL"),
-    CouponEntity(
-        name: "test 25",
-        description: "afdfsdfas asdf asdfas da",
-        code: "CDSOADOISOOS",
-        category: "TRAVEL")
-  ];
-
-  var _foundItems = [];
+  double _value = 150;
 
   @override
   void initState() {
-    _foundItems = allItems;
     super.initState();
-  }
-
-  void _filterItems(String key){
-    var results = [];
-    if(key.isEmpty){
-      results = allItems;
-    } else {
-    results = allItems.where((element) => element.name!.toLowerCase().contains(key.toLowerCase())).toList();
-    }
-    setState(() {
-      _foundItems = results;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: _buildAppbar(context),
       body: _buildBody(context),
@@ -176,8 +38,6 @@ class _HomePageState extends State<HomePage> {
 
   _buildFloatingButton(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: Colors.red,
-      foregroundColor: Colors.white,
       child: const Icon(Icons.add),
       onPressed: () => _onFloatingButtonTap(context),
     );
@@ -196,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           onTap: () => _goToSettings(context),
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 14),
-            child: Icon(Icons.settings, color: Colors.white),
+            child: Icon(Icons.settings),
           ),
         ),
       ],
@@ -204,24 +64,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   _buildBody(BuildContext context) {
-    return Column(
-      children: [
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+          mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+          children: [
         _buildHeader(context),
-        Expanded(
-          child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return CouponTitle(
-                coupon: _foundItems[index],
-                isRemovable: true,
-                onCouponTap: (coupon) => _onCouponPressed(context, coupon),
-              );
-            },
-            itemCount: _foundItems.length,
-          ),
-        )
-      ],
+        _buildHeightSection(context),
+        _buildWeightAgeSection(context)
+      ]),
     );
   }
 
@@ -238,15 +89,182 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildHeader(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: SearchBar(
-        hintText: AppLocalizations.of(context)!.searchYourCoupons,
-        leading: const Icon(Icons.search),
-        onChanged: (String value) {
-          _filterItems(value);
-        },
+    return Row(
+      children: [
+        Container(
+          width: (MediaQuery.of(context).size.width - 48) / 2,
+          height: MediaQuery.of(context).size.height / 5,
+          decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                  color: Colors.black,
+                  iconSize: 50,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.red),
+                  ),
+                  onPressed: () => _onFloatingButtonTap(context),
+                  icon: Icon(Icons.male)),
+              Text(AppLocalizations.of(context)!.male)
+            ],
+          ),
+        ),
+        SizedBox(width: 16),
+        Container(
+          width: (MediaQuery.of(context).size.width - 48) / 2,
+          height: MediaQuery.of(context).size.height / 5,
+          decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                  color: Colors.black,
+                  iconSize: 50,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.red),
+                  ),
+                  onPressed: () => _onFloatingButtonTap(context),
+                  icon: Icon(Icons.female)),
+              Text(AppLocalizations.of(context)!.female)
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  double calculateBMI(double weightInKilograms, double heightInCentimeter) {
+    var heightInMeters = heightInCentimeter / 100;
+    var heightxheigth = heightInMeters * heightInMeters;
+    return weightInKilograms / heightxheigth;
+  }
+
+  BMIStatus checkBMI(double bmi) {
+    if (bmi < 18.50) {
+      return BMIStatus.sottopeso;
+    } else if (bmi >= 18.50 && bmi < 24.99) {
+      return BMIStatus.intervalloNormale;
+    } else if (bmi >= 25.00 && bmi < 29.99) {
+      return BMIStatus.preobeso;
+    } else if (bmi >= 30.00 && bmi < 34.99) {
+      return BMIStatus.obesoI;
+    } else if (bmi >= 35.00 && bmi < 39.99) {
+      return BMIStatus.obesoII;
+    }
+    return BMIStatus.obesoIII;
+  }
+
+  _buildWeightAgeSection(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: (MediaQuery.of(context).size.width - 48) / 2,
+          height: MediaQuery.of(context).size.height / 5,
+          decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: IncrementalComponent(
+              title: AppLocalizations.of(context)?.weight,
+              unit: "Kg",
+            )
+          ),
+        ),
+        SizedBox(width: 16),
+        Container(
+          width: (MediaQuery.of(context).size.width - 48) / 2,
+          height: MediaQuery.of(context).size.height / 5,
+          decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: IncrementalComponent(
+                title: AppLocalizations.of(context)?.age,
+                unit: "Kg",
+              )
+          ),
+        ),
+      ],
+    );
+  }
+
+  _buildHeightSection(BuildContext context) {
+    return Container(
+      width: (MediaQuery.of(context).size.width - 32),
+      decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.all(Radius.circular(5))),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.height,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipOval(
+                      child: Material(
+                        color: Colors.grey, // Button color
+                        child: InkWell(
+                          splashColor: Colors.white, // Splash color
+                          onTap: () {},
+                          child: SizedBox(width: 40, height: 40, child: Center(child: Text("CM"))),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8,),
+                    ClipOval(
+                      child: Material(
+                        color: Colors.grey, // Button color
+                        child: InkWell(
+                          splashColor: Colors.white, // Splash color
+                          onTap: () {},
+                          child: SizedBox(width: 40, height: 40, child: Center(child: Text("FT"))),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+            Text(
+              "$_value",
+              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+            ),
+            Slider(
+              activeColor: Colors.black,
+              inactiveColor: Colors.white,
+              thumbColor: Colors.black,
+              min: 100.0,
+              max: 250.0,
+              value: _value,
+              onChanged: (value) {
+                setState(() {
+                  _value = double.parse((value).toStringAsFixed(1));
+                });
+              },
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  _onPlusTapped() {
+    print("***** plus tapped *********");
   }
 }

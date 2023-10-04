@@ -32,6 +32,9 @@ class SettingsPage extends StatelessWidget {
   }
 
   _buildBody() {
-    return Placeholder();
+    return TextButton(
+      onPressed: () => throw Exception(),
+      child: const Text("Throw Test Exception"),
+    );
   }
 }

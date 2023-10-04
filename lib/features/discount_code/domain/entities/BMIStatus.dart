@@ -1,0 +1,1 @@
+enum BMIStatus { sottopeso, intervalloNormale, preobeso, obesoI, obesoII, obesoIII }

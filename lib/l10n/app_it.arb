@@ -1,6 +1,6 @@
 {
     "helloWorld": "Ciao Mondo!",
-    "appName":"Code Discount",
+    "appName":"Bmi",
     "settings" : "Impostazioni",
     "@settings": {
         "description": "Il nome della sezione Impostazioni"
@@ -12,5 +12,33 @@
     "searchYourCoupons" : "Cerca i tuoi coupon...",
     "@searchYourCoupons": {
         "description": "hint for searchbar"
+    },
+    "yourHeight" : "Your height in cm",
+    "@yourHeight": {
+        "description": "hint for searchbar"
+    },
+    "yourWeight": "Your weight in kg",
+    "@yourWeight": {
+        "description": "hint for searchbar"
+    },
+    "weight": "Altezza",
+    "@weight": {
+        "description": ""
+    },
+    "height": "Peso",
+    "@height": {
+        "description": "height"
+    },
+    "male": "UOMO",
+    "@male": {
+        "description": "male"
+    },
+    "female": "DONNA",
+    "@female": {
+        "description": "female"
+    },
+    "age": "Età",
+    "@age": {
+        "description": "age"
     }
 }
