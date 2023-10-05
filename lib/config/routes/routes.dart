@@ -1,3 +1,5 @@
+import 'package:bmi/features/discount_code/data/models/details_arguments.dart';
+import 'package:bmi/features/discount_code/domain/entities/BMIStatus.dart';
 import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
 import 'package:bmi/features/discount_code/presentation/pages/details/details_page.dart';
 import 'package:bmi/features/discount_code/presentation/pages/home/home_page.dart';
@@ -11,12 +13,11 @@ class AppRoutes {
       case '/':
         return _materialRoute(const HomePage());
 
-      case '/Details':
-        return _materialRoute(DetailsPage(coupon: settings.arguments as CouponEntity));
-
-      case '/NewCoupon':
-        return _materialRoute(DetailsPage());
-
+      case DetailsPage.routeName:
+        {
+          final args = settings.arguments as DetailsArguments;
+          return _materialRoute(DetailsPage(args: args,));
+        }
       case '/Settings':
         return _materialRoute(SettingsPage());
 

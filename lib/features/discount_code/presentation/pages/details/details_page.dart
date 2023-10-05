@@ -1,24 +1,26 @@
+import 'package:bmi/features/discount_code/data/models/details_arguments.dart';
 import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../domain/entities/BMIStatus.dart';
+
 
 class DetailsPage extends StatelessWidget {
 
-  final CouponEntity ? coupon;
-  final void Function(CouponEntity article) ? onCouponPressed;
-
-  const DetailsPage({
+  static const routeName = '/Details';
+  final DetailsArguments args;
+  DetailsPage({
     Key ? key,
-    this.coupon,
-    this.onCouponPressed
+    required this.args
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: _buildAppbar(context),
-      body: _buildBody(),
+      body: _buildBody(context),
     );
   }
 
@@ -38,13 +40,10 @@ class DetailsPage extends StatelessWidget {
     );
   }
 
-  _buildBody() {
-    return Placeholder();
+  _buildBody(BuildContext context) {
+    return Text(args.bmi.toString(), style: TextStyle(fontSize: 35),);
   }
 
   void _onTap() {
-    if (onCouponPressed != null) {
-      onCouponPressed!(coupon!);
-    }
   }
 }

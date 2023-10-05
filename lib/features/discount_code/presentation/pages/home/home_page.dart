@@ -1,8 +1,12 @@
-import 'package:bmi/config/routes/routes.dart';
+import 'package:bmi/core/constants/constants.dart';
+import 'package:bmi/features/discount_code/data/models/details_arguments.dart';
 import 'package:bmi/features/discount_code/domain/entities/BMIStatus.dart';
 import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
+import 'package:bmi/features/discount_code/presentation/pages/details/details_page.dart';
 import 'package:bmi/features/discount_code/presentation/widgets/coupon_title.dart';
+import 'package:bmi/features/discount_code/presentation/widgets/gender_button.dart';
 import 'package:bmi/features/discount_code/presentation/widgets/incremental_component.dart';
+import 'package:bmi/features/discount_code/presentation/widgets/unit_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +24,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double _value = 150;
+  double _height = defaultHeight;
+  double _weight = defaultWeight;
+  int _age = defaultAge;
+  bool isMaleSelected = true;
+  bool isFemaleSelected = false;
+  bool isCMSelected = true;
 
   @override
   void initState() {
@@ -76,79 +85,22 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, '/Settings');
   }
 
-  _onFloatingButtonTap(BuildContext context) {
-    Navigator.pushNamed(context, '/NewCoupon');
-  }
-
   Widget _buildHeader(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: (MediaQuery.of(context).size.width - 48) / 2,
-          height: MediaQuery.of(context).size.height / 5,
-          decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                  color: Colors.black,
-                  iconSize: 50,
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.red),
-                  ),
-                  onPressed: () => _onFloatingButtonTap(context),
-                  icon: Icon(Icons.male)),
-              Text(AppLocalizations.of(context)!.male)
-            ],
-          ),
+        GenderButton(
+          onButtonTapped: (value) =>  _onMaleButtonTapped(value),
+          isMale: true,
+          isSelected: isMaleSelected,
         ),
-        SizedBox(width: 16),
-        Container(
-          width: (MediaQuery.of(context).size.width - 48) / 2,
-          height: MediaQuery.of(context).size.height / 5,
-          decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                  color: Colors.black,
-                  iconSize: 50,
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.red),
-                  ),
-                  onPressed: () => _onFloatingButtonTap(context),
-                  icon: Icon(Icons.female)),
-              Text(AppLocalizations.of(context)!.female)
-            ],
-          ),
+        const SizedBox(width: 16),
+        GenderButton(
+          onButtonTapped: (value) => _onFemaleButtonTapped(value),
+          isMale: false,
+          isSelected: isFemaleSelected,
         ),
       ],
     );
-  }
-
-  double calculateBMI(double weightInKilograms, double heightInCentimeter) {
-    var heightInMeters = heightInCentimeter / 100;
-    var heightxheigth = heightInMeters * heightInMeters;
-    return weightInKilograms / heightxheigth;
-  }
-
-  BMIStatus checkBMI(double bmi) {
-    if (bmi < 18.50) {
-      return BMIStatus.sottopeso;
-    } else if (bmi >= 18.50 && bmi < 24.99) {
-      return BMIStatus.intervalloNormale;
-    } else if (bmi >= 25.00 && bmi < 29.99) {
-      return BMIStatus.preobeso;
-    } else if (bmi >= 30.00 && bmi < 34.99) {
-      return BMIStatus.obesoI;
-    } else if (bmi >= 35.00 && bmi < 39.99) {
-      return BMIStatus.obesoII;
-    }
-    return BMIStatus.obesoIII;
   }
 
   _buildWeightAgeSection(BuildContext context) {
@@ -165,8 +117,9 @@ class _HomePageState extends State<HomePage> {
               child: IncrementalComponent(
                 title: AppLocalizations.of(context)?.weight,
                 unit: "Kg",
-                onPlusTapped: _onPlusTapped,
-                onMinusTapped: _onPlusTapped,
+                value: _weight.toInt(),
+                onPlusTapped: (value) => _onPlusMinusTapped(value, true),
+                onMinusTapped: (value) => _onPlusMinusTapped(value, true),
               )),
         ),
         SizedBox(width: 16),
@@ -180,9 +133,9 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(16.0),
               child: IncrementalComponent(
                 title: AppLocalizations.of(context)?.age,
-                unit: "Kg",
-                onPlusTapped: _onPlusTapped,
-                onMinusTapped: _onPlusTapped,
+                value: _age,
+                onPlusTapped: (value) => _onPlusMinusTapped(value, false),
+                onMinusTapped: (value) => _onPlusMinusTapped(value, false),
               )),
         ),
       ],
@@ -207,56 +160,26 @@ class _HomePageState extends State<HomePage> {
                   AppLocalizations.of(context)!.height,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ClipOval(
-                      child: Material(
-                        color: Colors.grey, // Button color
-                        child: InkWell(
-                          splashColor: Colors.white, // Splash color
-                          onTap: () {},
-                          child: SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: Center(child: Text("CM"))),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    ClipOval(
-                      child: Material(
-                        color: Colors.grey, // Button color
-                        child: InkWell(
-                          splashColor: Colors.white, // Splash color
-                          onTap: () {},
-                          child: SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: Center(child: Text("FT"))),
-                        ),
-                      ),
-                    )
-                  ],
+                UnitSelector(
+                  isCMSelected: isCMSelected,
+                  onButtonTapped: (value) => _onCMButtonTapped(value),
                 )
               ],
             ),
             Text(
-              "$_value",
+              "$_height",
               style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
             ),
             Slider(
-              activeColor: Colors.black,
+              activeColor: Colors.grey,
               inactiveColor: Colors.white,
-              thumbColor: Colors.black,
+              thumbColor: Colors.limeAccent,
               min: 100.0,
               max: 250.0,
-              value: _value,
+              value: _height,
               onChanged: (value) {
                 setState(() {
-                  _value = double.parse((value).toStringAsFixed(1));
+                  _height = double.parse((value).toStringAsFixed(1));
                 });
               },
             )
@@ -266,23 +189,94 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _onPlusTapped() {
-    print("***** plus tapped *********");
+  _onCMButtonTapped(bool value) {
+    setState(() {
+      isCMSelected = value;
+    });
+  }
+
+  _onMaleButtonTapped(bool value) {
+    setState(() {
+      isMaleSelected = value;
+      isFemaleSelected = !value;
+    });
+  }
+
+  _onFemaleButtonTapped(bool value) {
+    setState(() {
+      isMaleSelected = !value;
+      isFemaleSelected = value;
+    });
+  }
+
+  _onPlusMinusTapped(int value, bool isWeight) {
+    if (isWeight) {
+      _weight = value.toDouble();
+    } else {
+      _age = value;
+    }
   }
 
   _buildCalculateButton(BuildContext context) {
-    return Container(
-        width: (MediaQuery.of(context).size.width - 32),
-        decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.all(Radius.circular(5))),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-              child: Text(
-            "Calculate",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+    return GestureDetector(
+      onTap: _onCalculatePressed,
+      child: Container(
+          width: (MediaQuery.of(context).size.width - 32),
+          decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+                child: Text(
+                  "Calculate",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                )),
           )),
-        ));
+    );
+  }
+
+  _onCalculatePressed() {
+    double bmi = calculateBMI(_weight.toDouble(), _height.toDouble());
+    BMIStatus status = checkBMI(bmi, isMaleSelected);
+    Navigator.pushNamed(context, DetailsPage.routeName, arguments: DetailsArguments(bmi, status));
+  }
+
+  double calculateBMI(double weightInKilograms, double heightInCentimeter) {
+    var heightInMeters = heightInCentimeter / 100;
+    var heightxheigth = heightInMeters * heightInMeters;
+    return weightInKilograms / heightxheigth;
+  }
+
+  BMIStatus checkBMI(double bmi, bool isMale) {
+    if (isMale) {
+      if (bmi < 18.50) {
+        return BMIStatus.sottopeso;
+      } else if (bmi >= 18.50 && bmi < 24.99) {
+        return BMIStatus.intervalloNormale;
+      } else if (bmi >= 25.00 && bmi < 29.99) {
+        return BMIStatus.preobeso;
+      } else if (bmi >= 30.00 && bmi < 34.99) {
+        return BMIStatus.obesoI;
+      } else if (bmi >= 35.00 && bmi < 39.99) {
+        return BMIStatus.obesoII;
+      } else {
+        return BMIStatus.obesoIII;
+      }
+    } else {
+      if (bmi < 17.50) {
+        return BMIStatus.sottopeso;
+      } else if (bmi >= 17.50 && bmi < 24) {
+        return BMIStatus.intervalloNormale;
+      } else if (bmi >= 24 && bmi < 29) {
+        return BMIStatus.preobeso;
+      } else if (bmi >= 29 && bmi < 34) {
+        return BMIStatus.obesoI;
+      } else if (bmi >= 34 && bmi < 36.5) {
+        return BMIStatus.obesoII;
+      } else {
+        return BMIStatus.obesoIII;
+      }
+    }
   }
 }

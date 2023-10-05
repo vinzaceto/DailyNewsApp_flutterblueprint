@@ -4,8 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IncrementalComponent extends StatefulWidget {
 
-  final void Function() ? onPlusTapped;
-  final void Function() ? onMinusTapped;
+  final void Function(int value) ? onPlusTapped;
+  final void Function(int value) ? onMinusTapped;
   final String ? title;
   final String ? unit;
   int value;
@@ -40,7 +40,7 @@ class _IncrementalComponentState extends State<IncrementalComponent> {
         ),
         _buildCounter(context),
         Text(
-          widget.unit!,
+          widget.unit ?? "",
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
       ],
@@ -57,7 +57,7 @@ class _IncrementalComponentState extends State<IncrementalComponent> {
             child: InkWell(
               splashColor: Colors.white, // Splash color
               onTap: _onMinusTap,
-              child: SizedBox(width: 40, height: 40, child: Center(child: Icon(Icons.remove))),
+              child: SizedBox(width: 40, height: 40, child: Center(child: Icon(Icons.remove,color: Colors.limeAccent,))),
             ),
           ),
         ),
@@ -71,7 +71,7 @@ class _IncrementalComponentState extends State<IncrementalComponent> {
             child: InkWell(
               splashColor: Colors.white, // Splash color
               onTap: _onPlusTap,
-              child: SizedBox(width: 40, height: 40, child: Center(child: Icon(Icons.add))),
+              child: SizedBox(width: 40, height: 40, child: Center(child: Icon(Icons.add, color: Colors.limeAccent,))),
             ),
           ),
         ),
@@ -82,7 +82,10 @@ class _IncrementalComponentState extends State<IncrementalComponent> {
   void _onPlusTap() {
     if (widget.onPlusTapped != null) {
       setState(() {
-        widget.value = widget.value + 1;
+        if(widget.value <= 300){
+          widget.value = widget.value + 1;
+          widget.onPlusTapped!(widget.value);
+        }
       });
     }
   }
@@ -90,7 +93,10 @@ class _IncrementalComponentState extends State<IncrementalComponent> {
   void _onMinusTap() {
     if (widget.onMinusTapped != null) {
       setState(() {
-        widget.value = widget.value - 1;
+        if(widget.value > 0) {
+          widget.value = widget.value - 1;
+          widget.onMinusTapped!(widget.value);
+        }
       });
     }
   }
