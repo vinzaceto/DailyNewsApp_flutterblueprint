@@ -1,13 +1,16 @@
+import 'package:bmi/features/bmi/domain/entities/unit.dart';
 import 'package:flutter/material.dart';
 
 class UnitSelector extends StatefulWidget {
+  bool isWeight = true;
   bool isCMSelected = true;
   final void Function(bool value)? onButtonTapped;
 
   UnitSelector({
     Key? key,
     this.isCMSelected = true,
-    this.onButtonTapped,
+    this.isWeight = true,
+    this.onButtonTapped
   }) : super(key: key);
 
   @override
@@ -32,8 +35,9 @@ class _UnitSelectorState extends State<UnitSelector> {
                   height: 40,
                   child: Center(
                     child: Text(
-                      "CM",
+                      widget.isWeight ? "kg" : "cm",
                       style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           color: widget.isCMSelected
                               ? Colors.limeAccent
                               : Colors.black),
@@ -58,8 +62,9 @@ class _UnitSelectorState extends State<UnitSelector> {
                   height: 40,
                   child: Center(
                     child: Text(
-                      "FT",
+                      widget.isWeight ? "lb" : "ft",
                       style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           color: !widget.isCMSelected
                               ? Colors.limeAccent
                               : Colors.black),

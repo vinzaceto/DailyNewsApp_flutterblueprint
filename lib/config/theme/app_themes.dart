@@ -53,7 +53,7 @@ ThemeData lightTheme() {
           color: Colors.black,
         ),
       ),
-      dividerColor: Colors.black);
+      dividerColor: Colors.white);
 }
 
 AppBarTheme darkAppBarTheme() {

@@ -26,6 +26,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double _height = defaultHeight;
   double _weight = defaultWeight;
+
+  double _defaultHeightMin = 100;
+  double _defaultHeightMax = 250;
+
   int _age = defaultAge;
   bool isMaleSelected = true;
   bool isFemaleSelected = false;
@@ -65,13 +69,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   _buildBody(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        _buildHeightSection(context),
-        _buildWeightSection(context),
-        //_buildWeightAgeSection(context),
-        _buildHeader(context),
-        _buildCalculateButton(context)
-      ]);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          _buildHeightSection(context),
+          _buildWeightSection(context),
+          //_buildWeightAgeSection(context),
+          _buildHeader(context),
+          _buildCalculateButton(context)
+        ]),
+    );
   }
 
   void _onCouponPressed(BuildContext context, CouponEntity couponEntity) {
@@ -160,20 +167,21 @@ class _HomePageState extends State<HomePage> {
                 ),
                 UnitSelector(
                   isCMSelected: isCMSelected,
+                  isWeight: false,
                   onButtonTapped: (value) => _onCMButtonTapped(value),
                 )
               ],
             ),
             Text(
-              "$_height",
+              _showHeight(_height),
               style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
             ),
             Slider(
               activeColor: Colors.grey,
               inactiveColor: Colors.white,
               thumbColor: Colors.limeAccent,
-              min: 100.0,
-              max: 250.0,
+              min: _defaultHeightMin,
+              max: _defaultHeightMax,
               value: _height,
               onChanged: (value) {
                 setState(() {
@@ -205,10 +213,14 @@ class _HomePageState extends State<HomePage> {
                   AppLocalizations.of(context)!.weight,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+                UnitSelector(
+                  isCMSelected: isCMSelected,
+                  onButtonTapped: (value) => _onCMButtonTapped(value),
+                )
               ],
             ),
             Text(
-              "$_weight",
+              "${_showWeight(_weight)}",
               style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
             ),
             Slider(
@@ -320,4 +332,50 @@ class _HomePageState extends State<HomePage> {
       }
     }
   }
+  
+  String _showHeight(double height){
+    if(isCMSelected){
+      return "$height";
+    } else {
+      return "${_centimetersToFeeString(height)}";
+    }
+  }
+
+  String _showWeight(double weight){
+    if(isCMSelected){
+      return "$weight";
+    } else {
+      return "${formatLb(kilogramsToPounds(weight))} ";
+    }
+  }
+
+  String _centimetersToFeeString(double centimeters) {
+    var tmp = centimeters / 30.48;
+    return tmp.toStringAsFixed(2);
+  }
+
+  double _centimetersToFeetDouble(double centimeters) {
+    return centimeters / 30.48;
+  }
+
+  double _feetToCentimeters(double feet) {
+    return feet * 30.48;
+  }
+
+  String formatFeet(double feet) {
+    return "${feet.toStringAsFixed(2).substring(0,1)}\' ${feet.toStringAsFixed(2).substring(2)}\"";
+  }
+
+  double kilogramsToPounds(double kilograms) {
+    return kilograms * 2.2046226218488;
+  }
+
+  double poundsToKilograms(double pounds) {
+    return pounds / 2.2046226218488;
+  }
+
+  String formatLb(double lb) {
+    return lb.toStringAsFixed(1);
+  }
+
 }

@@ -23,7 +23,7 @@ class _GenderButtonState extends State<GenderButton> {
     return GestureDetector(
       onTap: () => _onButtonTap(),
       child: Container(
-        width: (MediaQuery.of(context).size.width - 16) / 2,
+        width: (MediaQuery.of(context).size.width - 32) / 2,
         height: MediaQuery.of(context).size.height / 5,
         decoration: BoxDecoration(
             color: widget.isSelected ? Colors.grey : Colors.grey[300],

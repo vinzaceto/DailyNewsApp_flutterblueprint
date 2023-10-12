@@ -58,11 +58,14 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   _buildBody(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        _buildHeader(context),
-        _buildStatus(context),
-        _buildHistory(context)
-      ]);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          _buildHeader(context),
+          _buildStatus(context),
+          _buildHistory(context)
+        ]),
+    );
   }
 
   void _onTap() {}
