@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:dio/dio.dart';
-import 'package:bmi/features/discount_code/data/models/article.dart';
+import 'package:bmi/features/bmi/data/models/article.dart';
 import '../../../../domain/entities/article.dart';
 
 abstract class RemoteArticlesState extends Equatable {

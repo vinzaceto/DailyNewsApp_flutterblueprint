@@ -40,5 +40,53 @@
     "age": "Età",
     "@age": {
         "description": "age"
+    },
+    "yourBmiIs": "Il tuo BMI è",
+    "@yourBmiIs": {
+        "description": "Your BMI is"
+    },
+    "calculate": "Calcola",
+    "@calculate": {
+        "description": "Calculate"
+    },
+    "yourStatus": "Il tuo stato è",
+    "@yourStatus": {
+        "description": "Your status is"
+    },
+    "underWeight": "Sottopeso",
+    "@underWeight": {
+        "description": "underWeight"
+    },
+    "normal": "Normale",
+    "@normal": {
+        "description": "normal"
+    },
+    "overweight": "Sovrappeso",
+    "@overweight": {
+        "description": "overweight"
+    },
+    "obeseI": "Obeso I",
+    "@obeseI": {
+        "description": "obese I"
+    },
+    "obeseII": "Obeso II",
+    "@obeseII": {
+        "description": "obese II"
+    },
+    "obeseIII": "Obeso III",
+    "@obeseIII": {
+        "description": "obese III"
+    },
+    "delete": "Elimina",
+    "@delete": {
+        "description": "delete"
+    },
+    "history": "History",
+    "@history": {
+        "description": "history"
+    },
+    "about": "About",
+    "@about": {
+        "description": "about"
     }
 }

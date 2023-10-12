@@ -1,12 +1,12 @@
 import 'package:bmi/core/constants/constants.dart';
-import 'package:bmi/features/discount_code/data/models/details_arguments.dart';
-import 'package:bmi/features/discount_code/domain/entities/BMIStatus.dart';
-import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
-import 'package:bmi/features/discount_code/presentation/pages/details/details_page.dart';
-import 'package:bmi/features/discount_code/presentation/widgets/coupon_title.dart';
-import 'package:bmi/features/discount_code/presentation/widgets/gender_button.dart';
-import 'package:bmi/features/discount_code/presentation/widgets/incremental_component.dart';
-import 'package:bmi/features/discount_code/presentation/widgets/unit_selector.dart';
+import 'package:bmi/features/bmi/data/models/details_arguments.dart';
+import 'package:bmi/features/bmi/domain/entities/BMIStatus.dart';
+import 'package:bmi/features/bmi/domain/entities/coupon.dart';
+import 'package:bmi/features/bmi/presentation/pages/details/details_page.dart';
+import 'package:bmi/features/bmi/presentation/widgets/coupon_title.dart';
+import 'package:bmi/features/bmi/presentation/widgets/gender_button.dart';
+import 'package:bmi/features/bmi/presentation/widgets/incremental_component.dart';
+import 'package:bmi/features/bmi/presentation/widgets/unit_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           onTap: () => _goToSettings(context),
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 14),
-            child: Icon(Icons.settings),
+            child: Icon(Icons.more_vert),
           ),
         ),
       ],
@@ -65,16 +65,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   _buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        _buildHeader(context),
+    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         _buildHeightSection(context),
-        _buildWeightAgeSection(context),
+        _buildWeightSection(context),
+        //_buildWeightAgeSection(context),
+        _buildHeader(context),
         _buildCalculateButton(context)
-      ]),
-    );
+      ]);
   }
 
   void _onCouponPressed(BuildContext context, CouponEntity couponEntity) {
@@ -87,6 +84,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildHeader(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         GenderButton(
           onButtonTapped: (value) =>  _onMaleButtonTapped(value),
@@ -144,7 +142,7 @@ class _HomePageState extends State<HomePage> {
 
   _buildHeightSection(BuildContext context) {
     return Container(
-      width: (MediaQuery.of(context).size.width - 32),
+      width: (MediaQuery.of(context).size.width),
       decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -189,6 +187,49 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  _buildWeightSection(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.all(Radius.circular(5))),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.weight,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Text(
+              "$_weight",
+              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+            ),
+            Slider(
+              activeColor: Colors.grey,
+              inactiveColor: Colors.white,
+              thumbColor: Colors.limeAccent,
+              min: 45.0,
+              max: 200.0,
+              value: _weight,
+              onChanged: (value) {
+                setState(() {
+                  _weight = double.parse((value).toStringAsFixed(1));
+                });
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   _onCMButtonTapped(bool value) {
     setState(() {
       isCMSelected = value;
@@ -221,7 +262,7 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: _onCalculatePressed,
       child: Container(
-          width: (MediaQuery.of(context).size.width - 32),
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: Colors.grey[300],
               borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -229,8 +270,8 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
                 child: Text(
-                  "Calculate",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  AppLocalizations.of(context)!.calculate,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )),
           )),
     );

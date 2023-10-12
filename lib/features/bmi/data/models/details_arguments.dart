@@ -1,4 +1,4 @@
-import 'package:bmi/features/discount_code/domain/entities/BMIStatus.dart';
+import 'package:bmi/features/bmi/domain/entities/BMIStatus.dart';
 
 class DetailsArguments {
   final double bmi;

@@ -1,6 +1,6 @@
 import 'package:bmi/core/resources/data_state.dart';
 import 'package:bmi/core/usecases/usecase.dart';
-import 'package:bmi/features/discount_code/domain/entities/article.dart';
+import 'package:bmi/features/bmi/domain/entities/article.dart';
 
 import '../repository/article_repository.dart';
 

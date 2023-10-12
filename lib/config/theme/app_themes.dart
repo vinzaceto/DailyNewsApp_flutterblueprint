@@ -2,58 +2,58 @@ import 'package:flutter/material.dart';
 
 ThemeData darkTheme() {
   return ThemeData(
-    scaffoldBackgroundColor: Colors.black,
-    fontFamily: 'Muli',
-    appBarTheme: darkAppBarTheme(),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      elevation: 2, // elevation
-      backgroundColor: Colors.lime, // the background color
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      border: UnderlineInputBorder(),
-      labelStyle: TextStyle(
-        color: Colors.white,
+      scaffoldBackgroundColor: Colors.black,
+      fontFamily: 'Muli',
+      appBarTheme: darkAppBarTheme(),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        elevation: 2, // elevation
+        backgroundColor: Colors.lime, // the background color
       ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
+      inputDecorationTheme: const InputDecorationTheme(
+        border: UnderlineInputBorder(),
+        labelStyle: TextStyle(
+          color: Colors.white,
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            style: BorderStyle.solid,
+            color: Colors.white,
+          ),
+        ),
+        outlineBorder: BorderSide(
           style: BorderStyle.solid,
           color: Colors.white,
         ),
       ),
-      outlineBorder: BorderSide(
-        style: BorderStyle.solid,
-        color: Colors.white,
-      ),
-    ),
-  );
+      dividerColor: Colors.black);
 }
 
 ThemeData lightTheme() {
   return ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    fontFamily: 'Muli',
-    appBarTheme: lightAppBarTheme(),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      elevation: 2, // elevation
-      backgroundColor: Colors.lime, // the background color
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      border: UnderlineInputBorder(),
-      labelStyle: TextStyle(
-        color: Colors.black,
+      scaffoldBackgroundColor: Colors.white,
+      fontFamily: 'Muli',
+      appBarTheme: lightAppBarTheme(),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        elevation: 2, // elevation
+        backgroundColor: Colors.lime, // the background color
       ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
+      inputDecorationTheme: const InputDecorationTheme(
+        border: UnderlineInputBorder(),
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            style: BorderStyle.solid,
+            color: Colors.black,
+          ),
+        ),
+        outlineBorder: BorderSide(
           style: BorderStyle.solid,
           color: Colors.black,
         ),
       ),
-      outlineBorder: BorderSide(
-        style: BorderStyle.solid,
-        color: Colors.black,
-      ),
-    ),
-  );
+      dividerColor: Colors.black);
 }
 
 AppBarTheme darkAppBarTheme() {

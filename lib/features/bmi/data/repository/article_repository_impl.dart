@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:bmi/core/constants/constants.dart';
 import 'package:bmi/core/resources/data_state.dart';
-import 'package:bmi/features/discount_code/data/data_sources/remote/news_api_service.dart';
-import 'package:bmi/features/discount_code/domain/entities/article.dart';
-import 'package:bmi/features/discount_code/domain/repository/article_repository.dart';
+import 'package:bmi/features/bmi/data/data_sources/remote/news_api_service.dart';
+import 'package:bmi/features/bmi/domain/entities/article.dart';
+import 'package:bmi/features/bmi/domain/repository/article_repository.dart';
 
 
 class ArticleRepositoryImpl implements ArticleRepository {

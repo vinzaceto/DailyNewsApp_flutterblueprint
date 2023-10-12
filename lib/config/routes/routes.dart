@@ -1,11 +1,11 @@
-import 'package:bmi/features/discount_code/data/models/details_arguments.dart';
-import 'package:bmi/features/discount_code/domain/entities/BMIStatus.dart';
-import 'package:bmi/features/discount_code/domain/entities/coupon.dart';
-import 'package:bmi/features/discount_code/presentation/pages/details/details_page.dart';
-import 'package:bmi/features/discount_code/presentation/pages/home/home_page.dart';
+import 'package:bmi/features/bmi/data/models/details_arguments.dart';
+import 'package:bmi/features/bmi/domain/entities/BMIStatus.dart';
+import 'package:bmi/features/bmi/domain/entities/coupon.dart';
+import 'package:bmi/features/bmi/presentation/pages/details/details_page.dart';
+import 'package:bmi/features/bmi/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/discount_code/presentation/pages/settings/settings_page.dart';
+import '../../features/bmi/presentation/pages/settings/settings_page.dart';
 
 class AppRoutes {
   static Route onGenerateRoutes(RouteSettings settings) {

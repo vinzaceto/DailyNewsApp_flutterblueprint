@@ -39,6 +39,54 @@
   "@age": {
     "description": "age"
   },
+  "yourBmiIs": "Your BMI is",
+  "@yourBmiIs": {
+    "description": "Your BMI is"
+  },
+  "calculate": "Calculate",
+  "@calculate": {
+    "description": "Calculate"
+  },
+  "yourStatus": "Your status is",
+  "@yourStatus": {
+    "description": "Your status is"
+  },
+  "underWeight": "Underweight",
+  "@underWeight": {
+    "description": "underWeight"
+  },
+  "normal": "Normal",
+  "@normal": {
+    "description": "normal"
+  },
+  "overweight": "Overweight",
+  "@overweight": {
+    "description": "overweight"
+  },
+  "obeseI": "Obese I",
+  "@obeseI": {
+    "description": "obese I"
+  },
+  "obeseII": "Obese II",
+  "@obeseII": {
+    "description": "obese II"
+  },
+  "obeseIII": "Obese III",
+  "@obeseIII": {
+    "description": "obese III"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "delete"
+  },
+  "history": "History",
+  "@history": {
+    "description": "history"
+  },
+  "about": "About",
+  "@about": {
+    "description": "about"
+  },
   "hello": "Hello {userName}",
   "@hello": {
     "description": "A message with a single parameter",

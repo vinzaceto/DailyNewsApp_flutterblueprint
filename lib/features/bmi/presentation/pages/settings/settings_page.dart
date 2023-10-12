@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
   _buildAppbar(BuildContext context) {
     return AppBar(
       title: Text(
-        AppLocalizations.of(context)!.settings,
+        AppLocalizations.of(context)!.about,
       ),
       leading: GestureDetector(
         onTap: () => Navigator.pop(context),

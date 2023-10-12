@@ -63,6 +63,8 @@ dependencies:
   firebase_core: ^2.16.0
   firebase_crashlytics: ^3.3.6
   change_app_package_name: ^1.0.0
+  geekyants_flutter_gauges: ^1.0.3
+  shared_preferences: ^2.0.6
 
 
 dev_dependencies:
